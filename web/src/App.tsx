@@ -28,58 +28,29 @@ const styles = `
 
 *{ box-sizing:border-box; }
 html, body {
-  min-height: 100%; /* Changed from height: 100% */
+  min-height: 100%;
   margin: 0;
-  display: flex;          /* Added for centering */
-  flex-direction: column; /* Added for centering */
-  align-items: center;    /* Added for horizontal centering */
-  justify-content: flex-start; /* Ensure it starts from top, but stays centered */
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   background:
     radial-gradient(1200px 700px at 15% 10%, rgba(124,58,237,.18), transparent 55%),
     radial-gradient(900px 600px at 85% 20%, rgba(34,211,238,.18), transparent 55%),
     radial-gradient(900px 600px at 70% 85%, rgba(251,113,133,.14), transparent 55%),
     linear-gradient(180deg, var(--bg0), var(--bg1));
-  background-attachment: fixed; /* Keeps background still while scrolling */
-} 
-
-/* Update neonWrap to ensure it doesn't jump around */
-.neonWrap {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto; /* Centers the container itself */
-  padding: 40px 18px 80px;
-  position: relative;
-  box-sizing: border-box;
+  background-attachment: fixed;
 }
 
-/* Fix the Results container for large JSON */
-.results {
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.16);
-  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.18));
-  box-shadow: 0 20px 60px rgba(0,0,0,.55);
-  overflow: hidden;
-  width: 100%; /* Ensure it doesn't burst out of the grid */
-}
-
-/* Ensure the pre tag handles the text properly */
-.pre {
-  margin: 0;
-  padding: 16px 18px;
-  white-space: pre-wrap;
-  word-break: break-all; /* Prevents long strings from breaking layout */
-  overflow-x: auto;
-  max-height: 70vh; /* Limits the height so it doesn't push the page to infinity */
-  color: rgba(255,255,255,.88);
-}
 body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
 
 .neonWrap{
+  width: 100%;
   max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 18px 44px;
+  margin: 0 auto;
+  padding: 40px 18px 80px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .topGlow{
@@ -96,9 +67,7 @@ body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple
   display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
   margin-bottom: 16px;
 }
-.brandTitle{
-  display:flex; flex-direction:column;
-}
+.brandTitle{ display:flex; flex-direction:column; }
 .h1{
   font-size: 34px;
   letter-spacing: -0.02em;
@@ -113,16 +82,6 @@ body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple
   color: var(--muted);
   line-height: 1.45;
   max-width: 760px;
-}
-.badge{
-  padding: 10px 12px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
-  color: rgba(255,255,255,.8);
-  font-size: 12px;
-  white-space:nowrap;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 
 .grid{
@@ -159,22 +118,15 @@ body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple
   backdrop-filter: blur(10px);
 }
 
-.titleRow{
-  display:flex; align-items:center; justify-content:space-between; gap:10px;
-}
+.titleRow{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
 .h2{
   margin:0;
   font-size: 16px;
   letter-spacing: .2px;
   color: rgba(255,255,255,.9);
 }
-.hint{
-  margin-top: 6px;
-  color: var(--muted2);
-  font-size: 13px;
-}
+.hint{ margin-top: 6px; color: var(--muted2); font-size: 13px; }
 
-/* ✅ alignment fix: split row into left/right groups */
 .row{
   display:flex;
   align-items:center;
@@ -189,7 +141,7 @@ body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple
 
 .label{ color: var(--muted); font-size: 13px; }
 
-.select, .textarea, .file{
+.select, .textarea, .file, .input{
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.14);
   background: rgba(0,0,0,.25);
@@ -200,8 +152,9 @@ body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple
 .select{ padding: 10px 12px; }
 .file{ padding: 10px 12px; min-width: 320px; }
 .textarea{ width:100%; min-height: 220px; padding: 12px 12px; line-height: 1.45; resize: vertical; }
+.input{ padding: 9px 10px; min-width: 200px; }
 
-.select:focus, .textarea:focus, .file:focus{
+.select:focus, .textarea:focus, .file:focus, .input:focus{
   border-color: rgba(34,211,238,.55);
   box-shadow: 0 0 0 5px rgba(34,211,238,.12);
 }
@@ -246,15 +199,22 @@ body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple
 .btnGhost{
   background: rgba(255, 255, 255, 0.99);
   border: 1px solid rgba(255, 250, 250, 0.94);
-  color: rgba(255,255,255,.88);
+  color: rgba(10,12,28,.78);
 }
-.btnGhost:hover{ filter: brightness(1.5); }
+.btnGhost:hover{ filter: brightness(1.05); }
 
 .btnMini{
   padding: 8px 10px;
   border-radius: 12px;
   font-size: 12px;
 }
+
+.btnDanger{
+  background: rgba(251,113,133,.16);
+  border: 1px solid rgba(251,113,133,.35);
+  color: rgba(255,255,255,.92);
+}
+.btnDanger:hover{ filter: brightness(1.2); }
 
 .seg{
   display:inline-flex;
@@ -276,16 +236,10 @@ body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple
   background: transparent;
   color: rgba(10,12,28,.65);
 }
-
 .segBtnActive{
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(252, 252, 252, 0.92), rgb(255, 255, 255));
   color: white;
   box-shadow: 10px 10px 24px rgba(93, 0, 255, 0.94);
-}
-
-.segBtn:disabled{
-  opacity: .6;
-  cursor: not-allowed;
 }
 
 .small{ font-size: 13px; color: var(--muted); }
@@ -340,12 +294,14 @@ body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple
   margin: 0;
   padding: 16px 18px;
   white-space: pre-wrap;
+  word-break: break-all;
   overflow-x: auto;
+  max-height: 70vh;
   color: rgba(255,255,255,.88);
 }
 
-/* ✅ table */
-.tableWrap{ padding: 12px 12px 16px; overflow:auto; }
+/* table */
+.tableWrap{ padding: 12px 12px 16px; overflow:auto; max-height: 520px; }
 .table{
   width:100%;
   border-collapse: collapse;
@@ -361,39 +317,34 @@ body{ margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple
 .th{
   position: sticky;
   top: 0;
-  background: rgba(0,0,0,.35);
-  backdrop-filter: blur(8px);
-  color: rgba(255,255,255,.92);
-  font-weight: 700;
-}
-  /* Results body becomes a scroll container */
-.resultsBody{
-  max-height: 520px;           /* adjust: 420–700px */
-  overflow: auto;
-}
-
-/* keep table header visible while scrolling */
-.tableWrap{
-  padding: 12px 12px 16px;
-  overflow: auto;
-  max-height: 520px;           /* same as .resultsBody if you prefer */
-}
-
-/* sticky header already, but needs correct background */
-.th{
-  position: sticky;
-  top: 0;
   background: rgba(0,0,0,.55);
   backdrop-filter: blur(8px);
   z-index: 2;
+  color: rgba(255,255,255,.92);
+  font-weight: 700;
 }
 
-/* optional: make results top bar sticky too */
-.resultsTop{
-  position: sticky;
-  top: 0;
-  z-index: 3;
+.tdActions{
+  white-space: nowrap;
+  display:flex;
+  gap:8px;
+  align-items:center;
 }
+.inlineInput{
+  width: 100%;
+  min-width: 120px;
+  padding: 7px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.25);
+  color: rgba(255,255,255,.92);
+  outline: none;
+}
+.inlineInput:focus{
+  border-color: rgba(34,211,238,.55);
+  box-shadow: 0 0 0 4px rgba(34,211,238,.10);
+}
+
 .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 `;
 
@@ -409,19 +360,42 @@ function downloadJsonFile(filename: string, data: any) {
   URL.revokeObjectURL(url);
 }
 
+function isEditableCell(value: any) {
+  if (value === null || value === undefined) return true;
+  const t = typeof value;
+  return t === "string" || t === "number" || t === "boolean";
+}
+
+function stringifyCell(value: any) {
+  if (value === null || value === undefined) return "";
+  if (typeof value === "object") return JSON.stringify(value);
+  return String(value);
+}
+
 export default function App() {
+  // ingest text
   const [docType, setDocType] = useState("Diary");
   const [rawText, setRawText] = useState("");
   const [textLoading, setTextLoading] = useState(false);
 
+  // upload file
   const [fileLoading, setFileLoading] = useState(false);
 
+  // results
   const [lastId, setLastId] = useState<string | null>(null);
   const [lastKind, setLastKind] = useState<Kind | null>(null);
   const [rows, setRows] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>("table");
 
-  const [viewMode, setViewMode] = useState<ViewMode>("table"); // ✅ table/json switch
+  // admin tables (view all existing tables)
+  const [tableKind, setTableKind] = useState<Exclude<Kind, "UNKNOWN">>("TEXT_EVENTS");
+  const [tableLoading, setTableLoading] = useState(false);
+
+  // inline edit state
+  const [editingKey, setEditingKey] = useState<string | null>(null);
+  const [editDraft, setEditDraft] = useState<Record<string, any>>({});
+  const [rowBusyKey, setRowBusyKey] = useState<string | null>(null);
 
   const canStructureText = useMemo(
     () => rawText.trim().length > 0 && !textLoading,
@@ -435,12 +409,28 @@ export default function App() {
     return Array.from(keys);
   }, [rows]);
 
+  // identify primary key per kind (client side must match server)
+  const idColForKind = useMemo(() => {
+    if (lastKind === "IMAGE") return "ID";
+    if (lastKind && lastKind !== "UNKNOWN") return "FILE_ID";
+    // for admin tableKind
+    if (tableKind === "IMAGE") return "ID";
+    return "FILE_ID";
+  }, [lastKind, tableKind]);
+
+  function rowKey(kind: Kind | Exclude<Kind, "UNKNOWN">, r: any) {
+    const idCol = kind === "IMAGE" ? "ID" : "FILE_ID";
+    const id = r?.[idCol];
+    if (id === null || id === undefined) return `idx_${Math.random()}`;
+    return String(id);
+  }
+
   async function fetchResults(id: string, kind: Kind) {
+    // your backend might not have /api/results (depends on your server file)
+    // keeping it as-is because your original code used it
     const r2 = await fetch(`${API}/api/results/${id}?kind=${encodeURIComponent(kind)}`);
     const d2 = await r2.json();
     if (!r2.ok) throw new Error(JSON.stringify(d2));
-
-    // accept both {rows:[...]} and [...]
     const parsedRows = Array.isArray(d2) ? d2 : (d2.rows ?? []);
     setRows(parsedRows);
   }
@@ -450,6 +440,8 @@ export default function App() {
     setRows([]);
     setLastId(null);
     setLastKind(null);
+    setEditingKey(null);
+    setEditDraft({});
     setTextLoading(true);
 
     try {
@@ -463,7 +455,7 @@ export default function App() {
       if (!res.ok) throw new Error(JSON.stringify(data));
 
       const id = data.id as string;
-      const kind = (data.kind as Kind) ?? "TEXT_EVENTS"; // ✅ use server kind
+      const kind = (data.kind as Kind) ?? "TEXT_EVENTS";
       setLastId(id);
       setLastKind(kind);
 
@@ -480,6 +472,8 @@ export default function App() {
     setRows([]);
     setLastId(null);
     setLastKind(null);
+    setEditingKey(null);
+    setEditDraft({});
     setFileLoading(true);
 
     try {
@@ -507,6 +501,122 @@ export default function App() {
     }
   }
 
+  // ✅ new: view all tables (last 50)
+  async function loadTable(kind: Exclude<Kind, "UNKNOWN">) {
+    setError(null);
+    setTableLoading(true);
+    setRows([]);
+    setLastId("ALL");
+    setLastKind(kind);
+    setEditingKey(null);
+    setEditDraft({});
+    setViewMode("table");
+
+    try {
+      const res = await fetch(`${API}/api/tables/${encodeURIComponent(kind)}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(JSON.stringify(data));
+
+      const parsedRows = Array.isArray(data) ? data : (data.rows ?? []);
+      setRows(parsedRows);
+    } catch (e: any) {
+      setError(e?.message ?? "Failed to load table");
+    } finally {
+      setTableLoading(false);
+    }
+  }
+
+  function startEdit(kind: Kind, r: any) {
+    const key = rowKey(kind as any, r);
+    setEditingKey(key);
+    // draft = shallow copy, only editable primitives
+    const draft: Record<string, any> = {};
+    for (const [k, v] of Object.entries(r ?? {})) {
+      if (isEditableCell(v)) draft[k] = v;
+    }
+    setEditDraft(draft);
+  }
+
+  function cancelEdit() {
+    setEditingKey(null);
+    setEditDraft({});
+  }
+
+  async function saveEdit(kind: Kind, r: any) {
+    if (kind === "UNKNOWN") return;
+
+    const idCol = kind === "IMAGE" ? "ID" : "FILE_ID";
+    const id = r?.[idCol];
+    if (id === null || id === undefined) {
+      setError(`Cannot update: missing ${idCol}`);
+      return;
+    }
+
+    const key = rowKey(kind as any, r);
+    setRowBusyKey(key);
+    setError(null);
+
+    try {
+      // remove idCol from payload if present
+      const payload: Record<string, any> = { ...editDraft };
+      delete payload[idCol];
+
+      const res = await fetch(`${API}/api/data/${encodeURIComponent(kind)}/${encodeURIComponent(String(id))}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(JSON.stringify(data));
+
+      // update UI rows immediately
+      setRows((prev) =>
+        prev.map((x) => {
+          const xid = x?.[idCol];
+          if (String(xid) !== String(id)) return x;
+          return { ...x, ...payload };
+        })
+      );
+
+      setEditingKey(null);
+      setEditDraft({});
+    } catch (e: any) {
+      setError(e?.message ?? "Update failed");
+    } finally {
+      setRowBusyKey(null);
+    }
+  }
+
+  async function deleteRow(kind: Kind, r: any) {
+    if (kind === "UNKNOWN") return;
+
+    const idCol = kind === "IMAGE" ? "ID" : "FILE_ID";
+    const id = r?.[idCol];
+    if (id === null || id === undefined) {
+      setError(`Cannot delete: missing ${idCol}`);
+      return;
+    }
+
+    const key = rowKey(kind as any, r);
+    setRowBusyKey(key);
+    setError(null);
+
+    try {
+      const res = await fetch(`${API}/api/data/${encodeURIComponent(kind)}/${encodeURIComponent(String(id))}`, {
+        method: "DELETE",
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(JSON.stringify(data));
+
+      setRows((prev) => prev.filter((x) => String(x?.[idCol]) !== String(id)));
+      if (editingKey === key) cancelEdit();
+    } catch (e: any) {
+      setError(e?.message ?? "Delete failed");
+    } finally {
+      setRowBusyKey(null);
+    }
+  }
+
   const sample = `2026-02-19 18:40 Jonas Petrauskas Vilnius paid 12.50 EUR for salad + coffee
 2026-02-19 20:10 Ieva Kazlauskaitė Kaunas paid 7 EUR bus ticket
 Bad line without structure
@@ -515,11 +625,13 @@ Bad line without structure
   const SAMPLE_LOGS = `2026-02-19 10:15:03 INFO AuthService User login success code=OK
 2026-02-19 10:16:11 WARN PaymentService Slow response code=SLOW_API
 2026-02-19 10:17:45 ERROR OrderService Failed to create order code=DB_ERR
-2026-02-19 10:18:02 DEBUG AuthService token=... code=TRACE`
+2026-02-19 10:18:02 DEBUG AuthService token=... code=TRACE`;
 
   const sampleType = docType === "Diary" ? sample : SAMPLE_LOGS;
 
   const canDownload = rows.length > 0;
+
+  const activeKindForTable = (lastKind ?? "UNKNOWN") as Kind;
 
   return (
     <>
@@ -532,8 +644,8 @@ Bad line without structure
           <div className="brandTitle">
             <h1 className="h1">NeonStruct ✨</h1>
             <div className="sub">
-              Unstructured → Structured Data Lab. Paste text or upload files and view results as a
-              table or JSON. Download JSON anytime.
+              Unstructured → Structured Data Lab. Paste text or upload files, then browse curated
+              tables. Edit and delete records directly. Download JSON anytime.
             </div>
           </div>
         </div>
@@ -607,6 +719,7 @@ Bad line without structure
                     className="btn btnGhost"
                     disabled={textLoading}
                     onClick={() => setRawText(sampleType)}
+                    type="button"
                   >
                     Paste sample
                   </button>
@@ -617,6 +730,7 @@ Bad line without structure
                     className="btn btnNeon"
                     onClick={structureText}
                     disabled={!canStructureText}
+                    type="button"
                   >
                     {textLoading ? "Structuring…" : "Structure text"}
                   </button>
@@ -634,6 +748,51 @@ Bad line without structure
 
               <div className="small" style={{ marginTop: 10 }}>
                 Works best with timestamps / names / amounts — but it can handle chaos too.
+              </div>
+            </div>
+          </div>
+
+          {/* ✅ NEW: Browse existing tables */}
+          <div className="card wide">
+            <div className="cardInner">
+              <div className="titleRow">
+                <h2 className="h2">Browse existing curated tables</h2>
+                <span className="pill">
+                  <b>CURATED.*</b>
+                </span>
+              </div>
+              <div className="hint">
+                Load the latest 50 rows for a table. You can edit/delete directly in the results.
+              </div>
+
+              <div className="row">
+                <div className="rowLeft">
+                  <span className="label">Table</span>
+                  <select
+                    className="select"
+                    value={tableKind}
+                    onChange={(e) => setTableKind(e.target.value as any)}
+                  >
+                    <option value="TEXT_EVENTS">TEXT_EVENTS</option>
+                    <option value="TEXT_LOGS">TEXT_LOGS</option>
+                    <option value="IMAGE">IMAGE</option>
+                  </select>
+
+                  <button
+                    className="btn btnNeon"
+                    onClick={() => loadTable(tableKind)}
+                    disabled={tableLoading}
+                    type="button"
+                  >
+                    {tableLoading ? "Loading…" : "Load table"}
+                  </button>
+                </div>
+
+                <div className="rowRight">
+                  <span className="small">
+                    Tip: this does not change layout — everything stays centered.
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -659,29 +818,29 @@ Bad line without structure
                     </div>
                   </div>
 
-                  {/* ✅ view toggle */}
-                 <div className="seg" title="Choose view">
-  <button
-    className={`segBtn ${viewMode === "table" ? "segBtnActive" : ""}`}
-    onClick={() => setViewMode("table")}
-    disabled={!rows.length}
-    type="button"
-  >
-    Table
-  </button>
-  <button
-    className={`segBtn ${viewMode === "json" ? "segBtnActive" : ""}`}
-    onClick={() => setViewMode("json")}
-    disabled={!rows.length}
-    type="button"
-  >
-    JSON
-  </button>
-</div>
+                  {/* view toggle */}
+                  <div className="seg" title="Choose view">
+                    <button
+                      className={`segBtn ${viewMode === "table" ? "segBtnActive" : ""}`}
+                      onClick={() => setViewMode("table")}
+                      disabled={!rows.length}
+                      type="button"
+                    >
+                      Table
+                    </button>
+                    <button
+                      className={`segBtn ${viewMode === "json" ? "segBtnActive" : ""}`}
+                      onClick={() => setViewMode("json")}
+                      disabled={!rows.length}
+                      type="button"
+                    >
+                      JSON
+                    </button>
+                  </div>
 
-                  {/* ✅ always available download */}
+                  {/* download */}
                   <button
-                    className={`btn btnNeon btnMini`}
+                    className="btn btnNeon btnMini"
                     disabled={!canDownload}
                     onClick={() =>
                       downloadJsonFile(
@@ -690,6 +849,7 @@ Bad line without structure
                       )
                     }
                     title="Download the current results as JSON"
+                    type="button"
                   >
                     Download JSON
                   </button>
@@ -698,7 +858,7 @@ Bad line without structure
 
               {rows.length === 0 ? (
                 <div className="small" style={{ padding: 16 }}>
-                  No rows returned for this ID/kind.
+                  No rows returned.
                 </div>
               ) : viewMode === "json" ? (
                 <pre className="pre">{JSON.stringify(rows, null, 2)}</pre>
@@ -712,24 +872,106 @@ Bad line without structure
                             {c}
                           </th>
                         ))}
+                        <th className="th">ACTIONS</th>
                       </tr>
                     </thead>
+
                     <tbody>
-                      {rows.map((r, idx) => (
-                        <tr key={idx}>
-                          {columns.map((c) => (
-                            <td key={c} className="td">
-                              {r?.[c] === null || r?.[c] === undefined
-                                ? ""
-                                : typeof r[c] === "object"
-                                  ? JSON.stringify(r[c])
-                                  : String(r[c])}
+                      {rows.map((r, idx) => {
+                        const k = activeKindForTable;
+                        const key = rowKey(k as any, r);
+                        const isEditing = editingKey === key;
+                        const isBusy = rowBusyKey === key;
+
+                        const idCol = k === "IMAGE" ? "ID" : "FILE_ID";
+                        const pkVal = r?.[idCol];
+
+                        return (
+                          <tr key={key ?? idx}>
+                            {columns.map((c) => {
+                              const v = isEditing ? editDraft[c] : r?.[c];
+
+                              // never edit PK column
+                              const editable =
+                                isEditing &&
+                                c !== idCol &&
+                                isEditableCell(r?.[c]);
+
+                              return (
+                                <td key={c} className="td">
+                                  {editable ? (
+                                    <input
+                                      className="inlineInput"
+                                      value={v ?? ""}
+                                      onChange={(e) =>
+                                        setEditDraft((prev) => ({
+                                          ...prev,
+                                          [c]: e.target.value,
+                                        }))
+                                      }
+                                    />
+                                  ) : (
+                                    stringifyCell(v)
+                                  )}
+                                </td>
+                              );
+                            })}
+
+                            <td className="td">
+                              <div className="tdActions">
+                                {k === "UNKNOWN" || pkVal === undefined || pkVal === null ? (
+                                  <span className="small">No actions</span>
+                                ) : isEditing ? (
+                                  <>
+                                    <button
+                                      className="btn btnNeon btnMini"
+                                      disabled={isBusy}
+                                      onClick={() => saveEdit(k, r)}
+                                      type="button"
+                                    >
+                                      {isBusy ? "Saving…" : "Save"}
+                                    </button>
+                                    <button
+                                      className="btn btnGhost btnMini"
+                                      disabled={isBusy}
+                                      onClick={cancelEdit}
+                                      type="button"
+                                    >
+                                      Cancel
+                                    </button>
+                                  </>
+                                ) : (
+                                  <>
+                                    <button
+                                      className="btn btnGhost btnMini"
+                                      disabled={isBusy || k === "UNKNOWN"}
+                                      onClick={() => startEdit(k, r)}
+                                      type="button"
+                                    >
+                                      Edit
+                                    </button>
+                                    <button
+                                      className="btn btnDanger btnMini"
+                                      disabled={isBusy || k === "UNKNOWN"}
+                                      onClick={() => deleteRow(k, r)}
+                                      type="button"
+                                    >
+                                      {isBusy ? "Deleting…" : "Delete"}
+                                    </button>
+                                  </>
+                                )}
+                              </div>
                             </td>
-                          ))}
-                        </tr>
-                      ))}
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
+
+                  <div className="small" style={{ padding: "12px 4px 0" }}>
+                    Inline editing updates primitive fields only (string/number/bool). Primary key is
+                    not editable. Delete removes the row immediately from the UI.
+                  </div>
                 </div>
               )}
             </div>
